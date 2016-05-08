@@ -1,0 +1,7 @@
+create table tweets(
+  dt time not null,
+  user text not null,
+  when timestamp not null,
+  content text not null,
+  attitude char not null,
+);
