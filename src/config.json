@@ -1,0 +1,17 @@
+{
+    "twitter_auth": {
+        "consumer_key": "WZAQysvXIqUrZvTCZ75zcDOlv",
+        "consumer_secret": "gAZaICnGpNXb3kAw3fNoxYnifiD1egWS640sDMh8AejUwLdkhH",
+        "access_key": "4017681194-J9C1Qejg62xcRXiko6VGFNe64btM3C0rVhlvekA",
+        "access_secret": "jIHurk7sHiifblDHSPwLEBBtA5IdCBcCzGEmY8IbdP2aF"
+},
+    "user_names": ["ebooks_jack"],
+    "number_of_tweets": 100,
+    "db":{
+        "host":"localhost",
+        "port":5432,
+        "dbname": "tweetDB",
+        "user":"postgres",
+        "password":""
+    }
+}
