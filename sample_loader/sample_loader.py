@@ -30,7 +30,7 @@ class SampleTask(Task):
         :type config: dict
         """
         db_conn = DBConnection(config['db'])
-        file_path = "D:\programming\TSA\dataset\Sentiment_Analysis_Dataset.csv"
+        file_path = "D:\programming\dataset\Sentiment_Analysis_Dataset.csv"
         pre_process = QueryProcess(db_conn, DeleteQuery(self.table))
         extractor = CSVExtractor(file_path)
         transformer = SampleTransformer()
