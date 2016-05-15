@@ -5,5 +5,5 @@ class Transformer(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractclassmethod
-    def transformer(self, data):
+    def transform(self, data):
         return

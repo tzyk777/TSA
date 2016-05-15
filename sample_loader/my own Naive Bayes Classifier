@@ -1,0 +1,9 @@
+step:
+
+1. preprocess each tweet
+    filter out URL, @ #
+    filter out stop word
+
+2. write your own class
+
+3. predict

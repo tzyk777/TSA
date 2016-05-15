@@ -61,7 +61,7 @@ class Task(object):
     def before_load(self):
         return
 
-    @abc.abstractclassmethod
-    def after_load(self, numbers):
+    @staticmethod
+    def after_load(numbers):
         print('{} records are loaded'.format(numbers))
         return
