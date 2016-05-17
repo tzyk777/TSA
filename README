@@ -1,0 +1,26 @@
+Twitter sentiment analysis(TSA)
+
+Components:
+- ETL libraries
+- Sample loader
+- Feature extractor
+- Tweets downloader
+- Database library
+- Classifiers
+- SQL
+
+2016/05/16
+Finished basic etl libraries and database libraries.
+Added sample loader and feature extractor.
+Added tweets downloader.
+SQL database schema
+
+TODO:
+Clean up
+Documentation
+Refactored tweets downloader
+Add naive bayes classifier
+Unit tests
+
+Author:
+Zeyang Tao
