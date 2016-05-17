@@ -39,7 +39,7 @@ class SampleTask(Task):
 
 
 def main():
-    with open('D:\programming\TSA\src\config.json') as config_file:
+    with open('D:\programming\TSA\config.json') as config_file:
         config = json.load(config_file)
 
     SampleTask(config).execute()

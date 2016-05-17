@@ -2,15 +2,19 @@ import abc
 
 
 class Task(object):
+    """
+    Task abstract class
+    Control etl work flow
+    """
     __metaclass__ = abc.ABCMeta
 
     def __init__(self, extractor, transformer, loader, pre_process=None, post_process=None):
         """
-        :type extractor: etl.Extractor
-        :type transformer: etl.Transformer
-        :type loader: etl.Loader
-        :type pre_process: etl.Process
-        :type post_process: etl.Process
+        :param extractor: etl.Extractor
+        :param transformer: etl.Transformer
+        :param loader: etl.Loader
+        :param pre_process: etl.Process
+        :param post_process: etl.Process
         """
         self.extractor = extractor
         self.transformer = transformer
@@ -31,6 +35,8 @@ class Task(object):
         self.before_load()
         numbers = self.loader.load(data)
         self.after_load(numbers)
+        if self.post_process:
+            self.post_process.process()
         self.after_execute()
 
     @abc.abstractclassmethod

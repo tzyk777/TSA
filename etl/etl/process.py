@@ -10,10 +10,14 @@ class Process(object):
 
 
 class QueryProcess(Process):
+    """
+    Query process before extractor.
+    Usually it does some preparations, e.g clean up database table
+    """
     def __init__(self, db_conn, query):
         """
-        :type db_conn: db.db_conn
-        :type query: db.queries
+        :param db_conn: db.db_conn
+        :param query: db.queries
         """
         self.db_conn = db_conn
         self.query = query

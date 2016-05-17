@@ -1,10 +1,10 @@
 import json
 import datetime as dt
 
-from src.db import DBConnection
-from src.extractor import Extractor
-from src.loader import Loader
-from src.queries import *
+from tweets_downloader.db import DBConnection
+from tweets_downloader.extractor import Extractor
+from tweets_downloader.loader import Loader
+from tweets_downloader.queries import *
 
 
 class Task:

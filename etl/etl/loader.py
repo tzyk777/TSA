@@ -4,6 +4,9 @@ from db.db import InsertQuery, SelectQuery
 
 
 class Loader(object):
+    """
+    Load good data to the destination
+    """
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractclassmethod
@@ -14,9 +17,9 @@ class Loader(object):
 class DBLoader(Loader):
     def __init__(self, table, columns, db_conn):
         """
-        :type table: str
-        :type columns: list[str]
-        :type db_conn: db
+        :param table: str
+        :param columns: list[str]
+        :param db_conn: db
         """
         self.table = table
         self.columns = columns
@@ -24,8 +27,8 @@ class DBLoader(Loader):
 
     def load(self, data):
         """
-        :type data: collections.Iterator[Any]
-        :rtype: int
+        :param data: collections.Iterator[Any]
+        :return: int
         """
         numbers = 0
         for numbers, line in enumerate(data, start=1):
