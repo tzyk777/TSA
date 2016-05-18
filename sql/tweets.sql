@@ -4,5 +4,5 @@ create table tweets(
   post_user text not null,
   post_time timestamp not null,
   content text not null,
-  attitude char not null
 );
+

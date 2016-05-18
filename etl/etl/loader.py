@@ -1,4 +1,5 @@
 import abc
+import csv
 
 from db.db import InsertQuery, SelectQuery
 
@@ -34,6 +35,26 @@ class DBLoader(Loader):
         for numbers, line in enumerate(data, start=1):
             query = InsertQuery(self.table, self.columns, list(line))
             self.db_conn.execute(str(query))
+        return numbers
+
+
+class CSVLoader(Loader):
+    def __init__(self, path):
+        """
+        :param path: str
+        """
+        self.path = path
+
+    def load(self, data):
+        """
+        :param data: collections.Iterator[Any]
+        :return: int
+        """
+        with open(self.path, 'wb') as csvfile:
+            writer = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            numbers = 0
+            for numbers, line in enumerate(data, start=1):
+                writer.writerow(line)
         return numbers
 
 
