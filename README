@@ -22,5 +22,15 @@ Refactored tweets downloader
 Add naive bayes classifier
 Unit tests
 
+2016/05/17
+First draft of naive bayes classifier.
+Moved text process functions to a common folder shared by many scripts.
+Slight changes to table schema.
+
+TODO:
+Revisit table schemas, create index.
+Test classifier.
+Address duplicated words in a text.
+
 Author:
 Zeyang Tao
