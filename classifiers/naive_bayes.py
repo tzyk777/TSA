@@ -25,8 +25,8 @@ class NaiveBayes:
         self.neg_feature_prob = {}
 
     def train_model(self):
-        self.num_positive = self.db_conn.get_value("select count(*) from features where sentiment = 'Positive'")
-        self.num_negative = self.db_conn.get_value("select count(*) from features where sentiment = 'Negative'")
+        self.num_positive = self.db_conn.get_value("select count(*) from features where sentiment = 'Positive'")[0]
+        self.num_negative = self.db_conn.get_value("select count(*) from features where sentiment = 'Negative'")[0]
         self.pos_prob = (self.num_positive/(self.num_positive+self.num_negative))
         self.neg_prob = (self.num_negative/(self.num_positive+self.num_negative))
 
@@ -45,6 +45,8 @@ class NaiveBayes:
         """
         good_text = process_tweet(text)
         features = get_features(good_text)
+        if not features:
+            return None
         pos_feature_matrix = [self.pos_feature_prob.get(feature, 1/self.num_positive) for feature in features]
         neg_feature_matrix = [self.neg_feature_prob.get(feature, 1/self.num_negative) for feature in features]
         positive_prob = self.pos_prob * functools.reduce(lambda x, y: x*y, pos_feature_matrix)
@@ -69,7 +71,8 @@ class ClassificationTransformer(Transformer):
         for line in data:
             dt, post_user, post_time, content = line
             sentiment = self.classifier.classify(content)
-            yield [dt, post_user, post_time, content, sentiment]
+            if sentiment:
+                yield [dt, post_user, post_time, content, sentiment]
 
 
 class ClassificationTask(Task):
@@ -81,9 +84,11 @@ class ClassificationTask(Task):
         self.db_conn = DBConnection(config['db'])
         self.classifier = NaiveBayes(self.db_conn)
         self.path = 'D:\programming\TSA\classifications.csv'
+        classifier = NaiveBayes(self.db_conn)
+        classifier.train_model()
         extractor = QueryExtractor(SelectQuery('tweets'), self.db_conn)
-        transformer = ClassificationTransformer()
-        loader = CSVLoader(self.path)
+        transformer = ClassificationTransformer(classifier)
+        loader = PDLoader(self.path)
         super().__init__(extractor, transformer, loader)
 
     def before_execute(self):

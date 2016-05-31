@@ -32,7 +32,7 @@ class Task:
 
 def main():
     date = dt.date.today()
-    with open('config.json') as config_file:
+    with open('../config.json') as config_file:
         config = json.load(config_file)
 
     db_conn = DBConnection(config['db'])

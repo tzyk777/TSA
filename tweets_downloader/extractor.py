@@ -1,7 +1,7 @@
 import tweepy
 from collections import namedtuple
 
-Tweet_row = namedtuple('Tweet_row', 'dt post_user post_time content attitude')
+Tweet_row = namedtuple('Tweet_row', 'dt post_user post_time content')
 
 
 class Extractor:
@@ -39,6 +39,5 @@ class Extractor:
                         post_user=user,
                         post_time=tweet.created_at,
                         content=tweet.text,
-                        attitude='P'
                     )
 

@@ -1,5 +1,6 @@
 import abc
 import csv
+import pandas as pd
 
 from db.db import InsertQuery, SelectQuery
 
@@ -50,12 +51,25 @@ class CSVLoader(Loader):
         :param data: collections.Iterator[Any]
         :return: int
         """
-        with open(self.path, 'wb') as csvfile:
+        with open(self.path, 'w') as csvfile:
             writer = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
             numbers = 0
             for numbers, line in enumerate(data, start=1):
+                print(line)
                 writer.writerow(line)
         return numbers
+
+
+class PDLoader(Loader):
+    def __init__(self, path):
+        """
+        :param path:
+        """
+        self.path = path
+
+    def load(self, data):
+        df = pd.DataFrame(data)
+        df.to_csv(self.path)
 
 
 class UpsertLoader(Loader):
